@@ -5,7 +5,7 @@ using System.Collections;
 static class defineData
 {
     public const int MaximumJump = 2;   //연속 점프 가능 횟수
-    public const float BasicSpeed = 2.0f; //player 구체의 기본 스피드
+    public const float BasicSpeed = 3.0f; //player 구체의 기본 스피드
 }
 
 public class PlayerController : MonoBehaviour {
@@ -41,14 +41,14 @@ public class PlayerController : MonoBehaviour {
         //투명한 버튼이 클릭이 되었을 시
         if (isSpeedClicked)
         {
-            addSpeed += 0.7f;
-            totalSpeed = defineData.BasicSpeed + addSpeed;
-            Invoke("MinusAddSpeed", 1);
+            addSpeed += 1.0f;
+            Invoke("MinusAddSpeed", 3);
 
             count++;
             updateClickCountText();
             isSpeedClicked = false;
         }
+        totalSpeed = defineData.BasicSpeed + addSpeed;
 	}
 
     void updateClickCountText()
@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour {
         movement = movement.normalized * totalSpeed * Time.deltaTime;
 
         rigidbody.MovePosition(transform.position + movement);
+        print("totalSpeed : " + totalSpeed);
     }
 
     //점프 함수
