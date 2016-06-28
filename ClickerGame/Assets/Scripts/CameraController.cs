@@ -24,7 +24,11 @@ public class CameraController : MonoBehaviour {
 
         if (GUI.Button(new Rect(1150, 400, 50, 50), "Jump"))
         {
-            player.GetComponent<PlayerController>().isJumpedClicked = true;
+            if (player.GetComponent<PlayerController>().jumpCount < 3)
+            {
+                player.GetComponent<PlayerController>().isJumpedClicked = true;
+                player.GetComponent<PlayerController>().jumpCount++;
+            }
         }
     }
 
