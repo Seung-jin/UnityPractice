@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     private float jump;
     private Rigidbody rigidbody;
     private Vector3 movement;
+    private GameObject ground;
 
     public bool isSpeedClicked;
     public bool isJumpedClicked;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour {
         jump = 7.0f;
         jumpCount = 0;
         rigidbody = GetComponent<Rigidbody>();
+        ground = GameObject.FindGameObjectWithTag("Ground");
 
         count = 0;
         updateClickCountText();
@@ -84,7 +86,6 @@ public class PlayerController : MonoBehaviour {
         else if (jumpCount > defineData.MaximumJump)
         {
             isJumpedClicked = false;
-            Invoke("JumpCountReset", 4);
         }
     }
 
@@ -104,5 +105,13 @@ public class PlayerController : MonoBehaviour {
             if (addSpeed < 0.0f)
                 addSpeed = 0.0f;
         }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (jumpCount < defineData.MaximumJump)
+            JumpCountReset();
+        else if (jumpCount >= defineData.MaximumJump)
+            Invoke("JumpCountReset", 2);
     }
 }
