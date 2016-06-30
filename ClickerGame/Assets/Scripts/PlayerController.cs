@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour {
     public bool isSpeedClicked;
     public bool isJumpedClicked;
     public int jumpCount;
-    public int count;
+    public int clickCount;
+    public int coinCount;
     public Text clickCountText;
+    public Text clickCoinText;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +33,8 @@ public class PlayerController : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody>();
         ground = GameObject.FindGameObjectWithTag("Ground");
 
-        count = 0;
+        clickCount = 0;
+        coinCount = 0;
         updateClickCountText();
         isSpeedClicked = false;
 	}
@@ -44,16 +47,20 @@ public class PlayerController : MonoBehaviour {
             addSpeed += 1.0f;
             Invoke("MinusAddSpeed", 3);
 
-            count++;
+            clickCount++;
             updateClickCountText();
             isSpeedClicked = false;
         }
         totalSpeed = defineData.BasicSpeed + addSpeed;
+
+        //코인 갯수 업데이트
+        clickCoinText.text = "Coin : " + coinCount.ToString();
 	}
 
+    //클릭 갯수 업데이트
     void updateClickCountText()
     {
-        clickCountText.text = "Click Count : " + count.ToString();
+        clickCountText.text = "Click Count : " + clickCount.ToString();
     }
 
     void FixedUpdate()
@@ -69,7 +76,6 @@ public class PlayerController : MonoBehaviour {
         movement = movement.normalized * totalSpeed * Time.deltaTime;
 
         rigidbody.MovePosition(transform.position + movement);
-        print("totalSpeed : " + totalSpeed);
     }
 
     //점프 함수
@@ -99,7 +105,6 @@ public class PlayerController : MonoBehaviour {
     //스피드가 증가한 후 1초마다 addSpeed의 값을 빼줌
     void MinusAddSpeed()
     {
-        print("In Minus Add Speed??");
         if (addSpeed > 0.0f)
         {
             addSpeed -= 1.0f;
@@ -110,9 +115,20 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
+        //장애물에 부딪혔을 때
         if (jumpCount < defineData.MaximumJump)
             JumpCountReset();
         else if (jumpCount >= defineData.MaximumJump)
             Invoke("JumpCountReset", 2);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        //코인과 부딪혔을 때
+        if (other.gameObject == GameObject.FindGameObjectWithTag("Coin"))
+        {
+            coinCount++;
+            Destroy(other.gameObject);
+        }
     }
 }
