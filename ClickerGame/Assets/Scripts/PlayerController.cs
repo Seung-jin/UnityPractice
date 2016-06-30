@@ -6,12 +6,12 @@ static class defineData
 {
     public const int MaximumJump = 2;   //연속 점프 가능 횟수
     public const float BasicSpeed = 3.0f; //player 구체의 기본 스피드
+    public const float JumpForce = 6.0f;    //점프 시 위로 가해지는 힘
 }
 
 public class PlayerController : MonoBehaviour {
     private float totalSpeed;   //player 구체의 총 스피드
     private float addSpeed;     //player 구체에 더해지는 스피드
-    private float jump;
     private Rigidbody rigidbody;
     private Vector3 movement;
     private GameObject ground;
@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         totalSpeed = 0.0f;
         addSpeed = 0.0f;
-        jump = 7.0f;
         jumpCount = 0;
         rigidbody = GetComponent<Rigidbody>();
         ground = GameObject.FindGameObjectWithTag("Ground");
@@ -87,7 +86,7 @@ public class PlayerController : MonoBehaviour {
         //연속 점프는 2번까지만 가능
         if (jumpCount <= defineData.MaximumJump)
         {
-            rigidbody.AddForce(Vector3.up * jump, ForceMode.Impulse);
+            rigidbody.AddForce(Vector3.up * defineData.JumpForce, ForceMode.Impulse);
             isJumpedClicked = false;
         }
         else if (jumpCount > defineData.MaximumJump)
@@ -115,11 +114,17 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        //장애물에 부딪혔을 때
-        if (jumpCount < defineData.MaximumJump)
-            JumpCountReset();
-        else if (jumpCount >= defineData.MaximumJump)
-            Invoke("JumpCountReset", 2);
+        //바닥에 부딪혔을 때
+        if (other.gameObject == GameObject.FindGameObjectWithTag("Ground"))
+        {
+            if (jumpCount < defineData.MaximumJump)
+                JumpCountReset();
+            else if (jumpCount >= defineData.MaximumJump)
+            {
+                jumpCount = 1;
+                Invoke("JumpCountReset", 2);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
