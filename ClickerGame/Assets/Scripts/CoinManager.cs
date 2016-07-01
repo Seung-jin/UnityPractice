@@ -14,4 +14,13 @@ public class CoinManager : MonoBehaviour {
         transform.Rotate(new Vector3(0, 1, 0) * 1);
 	
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == player.gameObject)
+        {
+            player.GetComponent<PlayerController>().coinCount++;
+            Destroy(this.gameObject);
+        }
+    }
 }

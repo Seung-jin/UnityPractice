@@ -127,6 +127,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    /*
     void OnTriggerEnter(Collider other)
     {
         //코인과 부딪혔을 때
@@ -136,4 +137,5 @@ public class PlayerController : MonoBehaviour {
             Destroy(other.gameObject);
         }
     }
+     * */
 }
