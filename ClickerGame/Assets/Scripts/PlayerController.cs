@@ -83,9 +83,11 @@ public class PlayerController : MonoBehaviour {
         if (!isJumpedClicked)
             return;
 
+        print("Jump Count : " + jumpCount);
         //연속 점프는 2번까지만 가능
         if (jumpCount <= defineData.MaximumJump)
         {
+            print("Jump In?");
             rigidbody.AddForce(Vector3.up * defineData.JumpForce, ForceMode.Impulse);
             isJumpedClicked = false;
         }
@@ -115,8 +117,9 @@ public class PlayerController : MonoBehaviour {
     void OnCollisionEnter(Collision other)
     {
         //바닥에 부딪혔을 때
-        if (other.gameObject == GameObject.FindGameObjectWithTag("Ground"))
+        if (other.gameObject == ground)
         {
+            print("Collision Ground?");
             if (jumpCount < defineData.MaximumJump)
                 JumpCountReset();
             else if (jumpCount >= defineData.MaximumJump)
@@ -126,16 +129,4 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
-
-    /*
-    void OnTriggerEnter(Collider other)
-    {
-        //코인과 부딪혔을 때
-        if (other.gameObject == GameObject.FindGameObjectWithTag("Coin"))
-        {
-            coinCount++;
-            Destroy(other.gameObject);
-        }
-    }
-     * */
 }

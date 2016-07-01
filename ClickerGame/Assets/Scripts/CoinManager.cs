@@ -17,7 +17,7 @@ public class CoinManager : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player.gameObject)
+        if (other.gameObject == player)
         {
             player.GetComponent<PlayerController>().coinCount++;
             Destroy(this.gameObject);
