@@ -14,10 +14,11 @@ public class ObstacleManager : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == player.gameObject)
         {
+
             Application.LoadLevel("GameOverScene");
         }
     }

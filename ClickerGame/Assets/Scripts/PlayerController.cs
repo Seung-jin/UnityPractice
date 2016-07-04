@@ -6,7 +6,7 @@ static class defineData
 {
     public const int MaximumJump = 2;   //연속 점프 가능 횟수
     public const float BasicSpeed = 3.0f; //player 구체의 기본 스피드
-    public const float JumpForce = 6.0f;    //점프 시 위로 가해지는 힘
+    public const float JumpForce = 8.0f;    //점프 시 위로 가해지는 힘
 }
 
 public class PlayerController : MonoBehaviour {
@@ -126,16 +126,4 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
-
-    /*
-    void OnTriggerEnter(Collider other)
-    {
-        //코인과 부딪혔을 때
-        if (other.gameObject == GameObject.FindGameObjectWithTag("Coin"))
-        {
-            coinCount++;
-            Destroy(other.gameObject);
-        }
-    }
-     * */
 }

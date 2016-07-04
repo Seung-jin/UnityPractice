@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickerGame.CSharp.Plugins", "ClickerGame.CSharp.Plugins.csproj", "{038BBCD8-1219-51F1-E234-16A782CAAEB3}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickerGame.CSharp", "ClickerGame.CSharp.csproj", "{3FF9F132-C258-6CD3-D804-8CEC08CF9773}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickerGame.CSharp.Editor.Plugins", "ClickerGame.CSharp.Editor.Plugins.csproj", "{B078815D-B415-7BE9-EE95-CC0DA55376BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{038BBCD8-1219-51F1-E234-16A782CAAEB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038BBCD8-1219-51F1-E234-16A782CAAEB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038BBCD8-1219-51F1-E234-16A782CAAEB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038BBCD8-1219-51F1-E234-16A782CAAEB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3FF9F132-C258-6CD3-D804-8CEC08CF9773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3FF9F132-C258-6CD3-D804-8CEC08CF9773}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FF9F132-C258-6CD3-D804-8CEC08CF9773}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FF9F132-C258-6CD3-D804-8CEC08CF9773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B078815D-B415-7BE9-EE95-CC0DA55376BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B078815D-B415-7BE9-EE95-CC0DA55376BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B078815D-B415-7BE9-EE95-CC0DA55376BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B078815D-B415-7BE9-EE95-CC0DA55376BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
