@@ -61,6 +61,20 @@ public class PlayerController : MonoBehaviour {
 
         UpdateAnimator();
 	}
+    void FixedUpdate()
+    {
+        Run();
+        Jump();
+    }
+
+    void LateUpdate()
+    {
+        //땅에서 떨어지면 엔딩
+        if (this.transform.position.y < -1)
+        {
+            Application.LoadLevel("GameOverScene");
+        }
+    }
 
     //클릭 갯수 업데이트
     void updateClickCountText()
@@ -68,11 +82,6 @@ public class PlayerController : MonoBehaviour {
         clickCountText.text = "Click Count : " + clickCount.ToString();
     }
 
-    void FixedUpdate()
-    {
-        Run();
-        Jump();
-    }
 
     //앞으로 움직이는 함수
     void Run()
